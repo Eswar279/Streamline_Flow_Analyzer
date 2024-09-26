@@ -17,7 +17,7 @@ protocol_mapping = {
     '4': 'ipip',  # IP in IP
 }
 
-#Function to load the lookup table into a dictionary for fast lookup
+# Function to load the lookup table into a dictionary for fast lookup
 def load_lookup_table(filename):
     lookup_dict = defaultdict(list) 
     with open(filename, 'r') as csvfile:
@@ -26,8 +26,6 @@ def load_lookup_table(filename):
             port_protocol = (row['dstport'].strip(), row['protocol'].strip().lower()) 
             lookup_dict[port_protocol].append(row['tag'].strip())  
     return lookup_dict
-
-
 
 # Function to process flow logs efficiently
 def process_flow_logs(log_filename, lookup_dict):
@@ -47,21 +45,14 @@ def process_flow_logs(log_filename, lookup_dict):
 
             dstport = parts[6].strip()
             protocol_number = parts[7].strip()
-            
-            # Debugging print
-            # print(f"Processing line: {line.strip()}")
-            # print(f"Extracted dstport: {dstport}, protocol_number: {protocol_number}")
-
             protocol = protocol_mapping.get(protocol_number, 'unknown')
             
             if protocol == 'unknown':
                 logging.warning(f"Unrecognized protocol number: {protocol_number} in line: {line.strip()}")
 
-           
             port_protocol_key = (dstport, protocol)
             port_protocol_count[port_protocol_key] += 1
 
-           
             if port_protocol_key in lookup_dict:
                 tag = lookup_dict[port_protocol_key][0]
                 tag_count[tag] += 1
@@ -88,7 +79,7 @@ def process_flow_logs(log_filename, lookup_dict):
 
     return tag_count, port_protocol_count, untagged_count, untagged_flows
 
-# Function to write the output to files
+# Function to write the output to CSV files
 def write_output(tag_count, port_protocol_count, untagged_count, untagged_flows):
     # Output for Tag Counts
     with open('tag_counts.csv', 'w', newline='') as csvfile:
@@ -101,7 +92,7 @@ def write_output(tag_count, port_protocol_count, untagged_count, untagged_flows)
     # Output for Port/Protocol Counts
     with open('port_protocol_counts.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(['Port', 'Protocol', 'Count'])
+        writer.writerow(['Destination Port', 'Protocol', 'Count'])
         for (port, protocol), count in port_protocol_count.items():
             writer.writerow([port, protocol, count])
 
@@ -112,22 +103,26 @@ def write_output(tag_count, port_protocol_count, untagged_count, untagged_flows)
         for dstport, protocol in untagged_flows:
             writer.writerow([dstport, protocol])
 
-    # Output summary to output.txt
-    with open('output.csv', 'w') as output_file:
-        output_file.write("Summary of Flow Log Processing:\n\n")
+    # Output summary to output.csv in a proper format
+    with open('output.csv', 'w', newline='') as output_file:
+        writer = csv.writer(output_file)
+        writer.writerow(['Summary of Flow Log Processing'])
+        writer.writerow([''])
         
-        output_file.write("Tag Counts:\n")
+        writer.writerow(['Tag Counts'])
         for tag, count in tag_count.items():
-            output_file.write(f"{tag}: {count}\n")
-        output_file.write(f"Untagged: {untagged_count}\n\n")
+            writer.writerow([tag, count])
+        writer.writerow(['Untagged', untagged_count])
+        writer.writerow([''])
 
-        output_file.write("Port/Protocol Counts:\n")
+        writer.writerow(['Port/Protocol Counts'])
         for (port, protocol), count in port_protocol_count.items():
-            output_file.write(f"Port: {port}, Protocol: {protocol}, Count: {count}\n")
+            writer.writerow([port, protocol, count])
 
-        output_file.write("\nUntagged Flows:\n")
+        writer.writerow([''])
+        writer.writerow(['Untagged Flows'])
         for dstport, protocol in untagged_flows:
-            output_file.write(f"Destination Port: {dstport}, Protocol: {protocol}\n")
+            writer.writerow([dstport, protocol])
 
 # Main function to execute the program
 def main():
@@ -143,7 +138,7 @@ def main():
     # Process the flow logs and get counts
     tag_count, port_protocol_count, untagged_count, untagged_flows = process_flow_logs(flow_log_filename, lookup_dict)
 
-    # Write the output to CSV files and output.txt
+    # Write the output to CSV files and output.csv
     write_output(tag_count, port_protocol_count, untagged_count, untagged_flows)
 
     end_time = time.time()
