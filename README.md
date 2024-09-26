@@ -1,7 +1,6 @@
 **Streamline Flow Analyzer**
 
 **Overview:**
-
 	This project is a Python application designed to analyze flow logs and classify them based on destination ports and protocols. The application utilizes a lookup table to assign tags to specific port and protocol combinations, providing insights into the traffic patterns within a network.
 
 **Features:**
