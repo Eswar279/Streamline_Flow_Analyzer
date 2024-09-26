@@ -1,0 +1,33 @@
+Summary of Flow Log Processing:
+
+Tag Counts:
+sv_P2: 1
+sv_P1: 2
+email: 3
+Untagged: 8
+
+Port/Protocol Counts:
+Port: 49153, Protocol: tcp, Count: 1
+Port: 49154, Protocol: tcp, Count: 1
+Port: 49155, Protocol: tcp, Count: 1
+Port: 49156, Protocol: tcp, Count: 1
+Port: 49157, Protocol: tcp, Count: 1
+Port: 49158, Protocol: tcp, Count: 1
+Port: 80, Protocol: tcp, Count: 1
+Port: 1024, Protocol: tcp, Count: 1
+Port: 443, Protocol: tcp, Count: 1
+Port: 23, Protocol: tcp, Count: 1
+Port: 25, Protocol: tcp, Count: 1
+Port: 110, Protocol: tcp, Count: 1
+Port: 993, Protocol: tcp, Count: 1
+Port: 143, Protocol: tcp, Count: 1
+
+Untagged Flows:
+Destination Port: 49153, Protocol: tcp
+Destination Port: 49154, Protocol: tcp
+Destination Port: 49155, Protocol: tcp
+Destination Port: 49156, Protocol: tcp
+Destination Port: 49157, Protocol: tcp
+Destination Port: 49158, Protocol: tcp
+Destination Port: 80, Protocol: tcp
+Destination Port: 1024, Protocol: tcp

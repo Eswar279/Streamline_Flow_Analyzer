@@ -1,0 +1,9 @@
+Destination Port,Protocol
+49153,tcp
+49154,tcp
+49155,tcp
+49156,tcp
+49157,tcp
+49158,tcp
+80,tcp
+1024,tcp

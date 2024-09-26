@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red193\green193\blue193;}
+{\*\expandedcolortbl;;\cssrgb\c80000\c80000\c80000;}
+\margl1440\margr1440\vieww29200\viewh18400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 \ul \ulc0 Streamline Flow Analyzer
+\f1\b0 \ulnone \
+\
+
+\f0\b Overview:
+\f1\b0 \
+\
+This project is a Python application designed to analyze flow logs and classify them based on destination ports and protocols. The application utilizes a lookup table to assign tags to specific port and protocol combinations, providing insights into the traffic patterns within a network.\
+\
+
+\f0\b Features:
+\f1\b0 \
+\
+
+\f0\b 	Protocol Mapping:
+\f1\b0  Supports multiple protocols (TCP, UDP, ICMP, etc.) with a predefined mapping.\
+
+\f0\b 	Batch Processing:
+\f1\b0  Efficiently processes large log files in batches to optimize memory usage.\
+
+\f0\b 	Error Logging:
+\f1\b0  Logs errors and warnings to a dedicated file for easier troubleshooting.\
+
+\f0\b 	Output Generation:
+\f1\b0  Produces detailed output files including:\
+  		\'97>Tag counts\
+  		\'97>Port/protocol counts\
+  		\'97>List of untagged flows\
+\
+
+\f0\b Requirements:
+\f1\b0 \
+\
+	Python 3.0\
+	 Required libraries:\
+  		\'97>csv (
+\f0\b import csv
+\f1\b0 )\
+  		\'97>logging (
+\f0\b import logging
+\f1\b0 )\
+  		\'97>time (
+\f0\b import time
+\f1\b0 )\
+  		\'97>collections (
+\f0\b from collections import defaultdict
+\f1\b0 )
+\f2 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+
+\f1 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+I
+\f0\b nput Files:
+\f1\b0 \
+\
+
+\f0\b 	1. lookup_table.csv:
+\f1\b0  A CSV file containing destination ports, associated protocols, and corresponding tags.\
+ 		
+\f0\b   \
+		Format:
+\f1\b0 	dstport,protocol,tag\
+     			           25,tcp,sv_P1\
+    		                      68,udp,sv_P2\
+				\'85\
+\
+
+\f0\b 	2. flow_logs.txt:
+\f1\b0  A text file containing flow log entries to be processed.\
+   		\
+		
+\f0\b Format:
+\f1\b0 	<type> <account_id> <eni_id> <source_ip> <destination_ip> <source_port> <destination_port> <protocol> <action_count> <bytes> <start_time> <end_time> <status> <response>\
+\
+				(<fields separated by spaces>)\
+	\
+     \
+\
+
+\f0\b Output Files:
+\f1\b0 \
+\
+After processing the logs, the code generates the following output files:\
+\
+
+\f0\b 	1.output.csv:
+\f1\b0  A summary of the flow log processing including tag counts, port/protocol counts, and untagged flows.\
+\
+
+\f0\b 	2.tag_counts.csv:
+\f1\b0  A CSV file detailing the counts of each tag found in the flow logs.\
+\
+
+\f0\b 	3.port_protocol_counts.csv:
+\f1\b0  A CSV file showing the counts of each unique port and protocol combination.\
+\
+
+\f0\b 	4.untagged_flows.csv:
+\f1\b0  A CSV file listing the destination ports and protocols for flows that could not be tagged.\
+\
+
+\f0\b Usage:
+\f1\b0 \
+\
+	1. Ensure that your `lookup_table.csv` and `flow_logs.txt` files are in the same directory as the script.\
+	\
+	2. Run the script from the command line:\
+							\'97>  
+\f0\b  python project.py
+\f1\b0 \
+\
+\
+	3. After the script finishes execution, check the output files for results.\
+\
+
+\f0\b Logging:
+\f1\b0 \
+\
+Errors encountered during processing are logged in the 
+\f0\b error.log
+\f1\b0  file. This file contains details about any malformed lines or unrecognized protocol numbers.\
+\
+
+\f0\b Performance:
+\f1\b0 \
+\
+The tool measures the processing time and prints it to the console, allowing users to gauge the efficiency of the log analysis.}
