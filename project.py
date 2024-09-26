@@ -143,7 +143,7 @@ def main():
     # Process the flow logs and get counts
     tag_count, port_protocol_count, untagged_count, untagged_flows = process_flow_logs(flow_log_filename, lookup_dict)
 
-    # Write the output to CSV files and output.txt
+    # Write the output to CSV files and output.csv
     write_output(tag_count, port_protocol_count, untagged_count, untagged_flows)
 
     end_time = time.time()
