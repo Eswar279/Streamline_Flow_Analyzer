@@ -62,7 +62,6 @@
 	2. Run the script from the command line:  
  
 						--> python project.py
-      
 	3. After the script finishes execution, check the output files for results.
 
 
