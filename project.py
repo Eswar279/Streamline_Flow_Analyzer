@@ -126,8 +126,8 @@ def write_output(tag_count, port_protocol_count, untagged_count, untagged_flows)
 
 # Main function to execute the program
 def main():
-    lookup_filename = 'lookup_table.csv'  # Name of the lookup table file
-    flow_log_filename = 'flow_logs.txt'  # Name of the flow log file
+    lookup_filename = 'lookup_table.csv' 
+    flow_log_filename = 'flow_logs.txt'  
 
     # Load the lookup table
     lookup_dict = load_lookup_table(lookup_filename)
