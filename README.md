@@ -59,9 +59,10 @@
    
 **Usage:**
 	1. Ensure that your "lookup_table.csv" and "flow_logs.txt" files are in the same directory as the script.
-	2. Run the script from the command line:  
  
+	2. Run the script from the command line:  
 						--> python project.py
+      
 	3. After the script finishes execution, check the output files for results.
 
 
