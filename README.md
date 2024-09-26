@@ -59,8 +59,8 @@
    
 **Usage:**
 	1. Ensure that your "lookup_table.csv" and "flow_logs.txt" files are in the same directory as the script.
- 
 	2. Run the script from the command line:  
+ 
 						--> python project.py
       
 	3. After the script finishes execution, check the output files for results.
@@ -68,5 +68,6 @@
 
 **Logging:**
 	Errors encountered during processing are logged in the "error.log" file. This file contains details about any malformed lines or unrecognized protocol numbers.
+ 
 **Performance:**
 	The tool measures the processing time and prints it to the console, allowing users to gauge the efficiency of the log analysis.
